@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product\ProductResource;
 use App\Model\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return Product::all();
     }
 
     /**
@@ -46,7 +47,30 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        // return $product;
+
+        // {
+        //     "id": 4,
+        //     "name": "tempore",
+        //     "detail": "Laborum voluptatibus aperiam cupiditate facilis placeat rerum. Reprehenderit eum cupiditate est molestias dolorem ut.",
+        //     "price": 208,
+        //     "stock": 4,
+        //     "discount": 20,
+        //     "created_at": "2019-11-01 09:21:02",
+        //     "updated_at": "2019-11-01 09:21:02"
+        // }
+
+        return new ProductResource($product);
+
+        // {
+        //     "data": {
+        //         "name": "tempore",
+        //         "description": "Laborum voluptatibus aperiam cupiditate facilis placeat rerum. Reprehenderit eum cupiditate est molestias dolorem ut.",
+        //         "price": 208,
+        //         "stock": 4,
+        //         "discount": 20
+        //     }
+        // }
     }
 
     /**
